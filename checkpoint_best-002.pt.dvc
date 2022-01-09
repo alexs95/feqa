@@ -1,0 +1,4 @@
+outs:
+- md5: eca85d2d598bc4fe98861c3987ac0c8f
+  size: 4063022782
+  path: checkpoint_best-002.pt
