@@ -214,5 +214,3 @@ class FEQA(object):
 
         else:
             return [doc_f1[k] for k in sorted(doc_f1.keys())]
-
-if __name__ == '__main__':

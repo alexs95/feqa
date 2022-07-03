@@ -1,17 +1,18 @@
 import pandas as pd
 
-from factCC.modeling.loader import load
-from datasets import tqdm
+from loader import load
+from tqdm import tqdm
 from pathlib import Path
 from feqa import FEQA
 import argparse
 import os
 
 # python -m spacy download en_core_web_sm
-# import benepar
-# import nltk
-# benepar.download('benepar_en2')
-# nltk.download('stopwords')
+# python -m spacy en
+import benepar
+import nltk
+benepar.download('benepar_en2')
+nltk.download('stopwords')
 
 
 def compute_score(storyids, claimids, sentids, scores):
@@ -21,7 +22,6 @@ def compute_score(storyids, claimids, sentids, scores):
         "sentid": sentids,
         "score": scores
     })
-    print(df)
     return df.groupby(['storyid', 'claimid']).max()['score'].mean()
 
 
@@ -58,7 +58,7 @@ def parse_args():
     parser.add_argument('--cnndm', type=str, help='Path to cnn/dm dataset.', default=data)
     parser.add_argument('--summaries', type=str, help='Path to decoded summaries.', default=pointer_gen_cov)
     parser.add_argument('--evaluation', type=str, help='Path to evaluation directory.', default=evaluation)
-    parser.add_argument('--samples', type=int, help='Number of stories to preprocess.', default=None)
+    parser.add_argument('--samples', type=int, help='Number of stories to preprocess.', default=1)
 
     return parser.parse_args()
 
